@@ -1,3 +1,5 @@
+const NUM_TRIALS = 0
+
 //write the function drawFiveCards();
 
 function drawFiveCards() {
