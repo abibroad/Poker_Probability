@@ -1,0 +1,25 @@
+4 steps:
+1 - generate random 5-card poker hands
+2 - check if the generated hand is of certain types
+3 - count the occurrence of certain hand-types
+4 - present the probabilities.
+
+GENERATE RANDOM 5 CARD POKER HANDS 
+- previous exercise
+
+CHECKING HAND TYPES (USING FUNCTIONS)
+- Three-of-a-Kind -- 3 cards with the same number
+- Four-of-a-Kind -- 4 cards with the same number
+- Full-House -- 3 cards with the same number and 2 cards with the same number
+- Straight -- 5 cards in numerical order
+- Flush -- 5 cards of the same suit
+- Straight Flush -- 5 cards of the same suit in numerical order
+
+
+- You should implement functions, which takes a hand as input, and returns if the hands is of certain types
+- Please note that you have to exclude rarer cases during your counting.  E.g., You should not count a hand with four Aces as Three-of-a-Kind;  You should not count a Straight Flush as normal Flush.
+
+Your program should have the global constant NUM_TRIALS.  This indicates the number of hands to be generated in the whole simulation.
+
+Your program should finally console.log the empirical probability you found during your simulation.
+i.e., the number of occurrences of certain hand type divided by NUM_TRIALS for each hand-type.

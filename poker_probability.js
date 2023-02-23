@@ -33,13 +33,9 @@ function drawOneCard() {
     return suit + number;
 }
 
-//console.log(drawOneCard())
-
 //main logic:
 let hand = drawFiveCards().join(' ');
-//console.log(hand.join(' '));
 console.log(hand);
-
 
 //a hand like HA HT C4 D3 C8 will be generated
 //pulling out the numbers
@@ -47,47 +43,28 @@ function numbers() {
     check = hand.split(" "); //array
     for (let i = 0; i < 5; i++) {
         check[i] = check[i].substr(1);
-    } return check
-    
+    } return check 
 }
-console.log(numbers(hand));
-
-//suits
-function suits() {
-    check = hand.split(" "); //array
-    for (let i = 0; i < 5; i++) {
-        check[i] = check[i].substr(0,1);
-    } return check
-    
-}
-console.log(suits(hand));
 
 //3 of a kind -- 3 cards with the same number
-//turn string into array and selec
 function threeOfAKind() {
-
     for (let item of numbers()) {
         if (hand.split(item).length - 1 == 3) {
             return true;
-            //console.log("3 of a kind");
         }
-
     } 
 }
-threeOfAKind(hand);
 
 //4 of a kind -- 4 cards with the same number
 function fourOfAKind() {
-
     for (let item of numbers()) {
         if (hand.split(item).length - 1 == 4) {
             return true;
-           
         }
-
     } 
 }
 
+//2 cards with the same number -- combined with 3 of a kind for full house in main logic
 function pairNumbers() {
     for (let item of numbers()) {
         if (hand.split(item).length - 1 == 2) {
@@ -97,6 +74,8 @@ function pairNumbers() {
 }
 
 // main logic
+//add straight flush, straight and flush
+//change console log to counts
 if (threeOfAKind(hand) && pairNumbers(hand)) {
     console.log(hand + " is a full house");
 }
