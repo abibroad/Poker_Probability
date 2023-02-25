@@ -2,7 +2,7 @@ const NUM_TRIALS = 400;
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
 const numbers = ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 
-//empty arrays to be populated if logic is true
+//variables for counting
 let straightFlushCount = 0;
 let fourOfAKindCount = 0;
 let fullHouseCount = 0;
@@ -10,34 +10,32 @@ let flushCount = 0;
 let straightCount = 0;
 let threeOfAKindCount = 0;
 
-
+function drawOneCard() {
+    let oneSuit = Math.floor(Math.random() * suits.length);
+    let oneNumber = Math.floor(Math.random() * numbers.length);
+    let DrawnCard = numbers[oneNumber] + " " + suits[oneSuit]
+    return DrawnCard
+}
+//Draw 5 cards
+function drawFiveCards() {
+    let cards = []
+    for (let i = 0; i < 5; i++) {
+        let card = drawOneCard()
+        while (cards.includes(card)) {
+            card = drawOneCard()
+        }
+        cards.push(card)
+    }
+    return cards
+}
 //running the functions num_trials number of times
 for (let i = 0; i < NUM_TRIALS; i++) {
 
-    function drawOneCard() {
-        let oneSuit = Math.floor(Math.random() * suits.length);
-        let oneNumber = Math.floor(Math.random() * numbers.length);
-        let DrawnCard = numbers[oneNumber] + " " + suits[oneSuit]
-        return DrawnCard
-    }
-    //Draw 5 cards
-    function drawFiveCards() {
-        let cards = []
-        for (let i = 0; i < 5; i++) {
-            let card = drawOneCard()
-            while (cards.includes(card)) {
-                card = drawOneCard()
-            }
-            cards.push(card)
-        }
-        return cards
-    }
+
     //drawing 5cards
     const hand = drawFiveCards();
-    //const hand = ["8 Hearts", "8 Clubs", "8 Diamonds", "Jack Hearts", "Queen Hearts"];
     let draw = hand.join(' ');
 
-    //let draw = "8 Hearts 9 Hearts 10 Hearts Jack Hearts Queen Hearts King Hearts"
 
     //get suitOrder
     function getSuitOrder() {
@@ -92,7 +90,7 @@ for (let i = 0; i < NUM_TRIALS; i++) {
     //straight
     function straight(hand) {
         for (let item of suits) {
-            if (hand.split(item).length - 1 === 2 && checkTest() === true) {
+            if (hand.split(item).length - 1 !== 5 && checkTest() === true) {
                 return true
             }
         }
@@ -125,8 +123,7 @@ for (let i = 0; i < NUM_TRIALS; i++) {
 
 
     // main logic
-    //add straight flush, straight and flush
-    //change console log to counts
+
     if (straightFlush(draw)) {
         straightFlushCount += 1;
     }
@@ -149,9 +146,9 @@ for (let i = 0; i < NUM_TRIALS; i++) {
 
 
 //Probability
-console.log(`${straightFlushCount}/${NUM_TRIALS} chance of getting a straight flush`);
-console.log(`${fourOfAKindCount}/${NUM_TRIALS} chance of getting a four of a kind`);
-console.log(`${fullHouseCount}/${NUM_TRIALS} chance of getting a full house`);
-console.log(`${flushCount}/${NUM_TRIALS} chance of getting a flush`);
-console.log(`${straightCount}/${NUM_TRIALS} chance of getting a straight`);
-console.log(`${threeOfAKindCount}/${NUM_TRIALS} chance of getting a three of a kind`);  
+console.log(straightFlushCount/NUM_TRIALS + "% chance of getting a straight flush");
+console.log(fourOfAKindCount/NUM_TRIALS + "% chance of getting a four of a kind");
+console.log(fullHouseCount/NUM_TRIALS + "% chance of getting a full house");
+console.log(flushCount/NUM_TRIALS + "% chance of getting a flush");
+console.log(straightCount/NUM_TRIALS +"% chance of getting a straight");
+console.log(threeOfAKindCount / NUM_TRIALS + "% chance of getting a three of a kind");  
