@@ -1,4 +1,4 @@
-// const NUM_TRIALS = 0;
+ const NUM_TRIALS = 4;
  const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
  const numbers = ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 function drawOneCard() {
@@ -21,8 +21,9 @@ function drawFiveCards() {
 }
 //drawing 5cards
 const hand = drawFiveCards();
+//const hand = ["8 Hearts", "8 Clubs", "8 Diamonds", "Jack Hearts", "Queen Hearts"];
 let draw = hand.join(' ');
-//const hand = ["8 Hearts", "9 Hearts", "10 Hearts", "Jack Hearts", "Queen Hearts", "King Hearts"]
+
 //let draw = "8 Hearts 9 Hearts 10 Hearts Jack Hearts Queen Hearts King Hearts"
 
 //get suitOrder
@@ -35,7 +36,7 @@ function getSuitOrder() {
     }
     return arrSuits;
 }
-let getnumberorder = getSuitOrder()
+let getNumberOrder = getSuitOrder()
 //get order
 function getOrder() {
     let arrOrder = []
@@ -55,7 +56,7 @@ function test(b, a, bIndex) {
 }
 function checkTest() {
     let sOrder = []
-    sOrder.push(...getnumberorder)
+    sOrder.push(...getNumberOrder)
     return test(numbers, sOrder)
 }
 //check type of hand drawn
@@ -85,7 +86,7 @@ function straight(hand) {
 }
 //3 of a kind -- 3 cards with the same number
 function threeOfAKind() {
-    for (let item of getnumberorder) {
+    for (let item of getNumberOrder) {
         if (draw.split(item).length - 1 == 3) {
             return true;
         }
@@ -93,7 +94,7 @@ function threeOfAKind() {
 }
 //4 of a kind -- 4 cards with the same number
 function fourOfAKind() {
-    for (let item of getnumberorder) {
+    for (let item of getNumberOrder) {
         if (draw.split(item).length - 1 == 4) {
             return true;
         }
@@ -101,31 +102,49 @@ function fourOfAKind() {
 }
 //2 cards with the same number -- combined with 3 of a kind for full house in main logic
 function pairNumbers() {
-    for (let item of getnumberorder) {
+    for (let item of getNumberOrder) {
         if (draw.split(item).length - 1 == 2) {
             return true;
         }
     }
 }
+
+//empty arrays to be populated if logic is true
+let straightFlushCount = [0];
+let fourOfAKindCount = [0];
+let fullHouseCount = [0];
+let flushCount = [0];
+let straightCount = [0];
+let threeOfAKindCount = [0];
+
 // main logic
 //add straight flush, straight and flush
 //change console log to counts
 if (straightFlush(draw)) {
-    console.log(draw + "  is a straight flush");
+    straightFlushCount += 1;
 }
 else if (fourOfAKind(draw)) {
-    console.log(draw + "  is 4 of a kind");
+    fourOfAKindCount += 1;
 }    
 else if (threeOfAKind(draw) && pairNumbers(draw)) { //full house
-    console.log(draw + "  is a full house");
+    fullHouseCount += 1;
 }
 else if (flush(draw)) {
-    console.log(draw + "  is a flush")
+    flushCount += 1;
 }
 else if (straight(draw)) {
-    console.log(draw + "  is a straight")
+    straightCount += 1;
 }
 else if (threeOfAKind(draw)) {
-    console.log(draw + "  is 3 of a kind");
+    threeOfAKindCount += 1;
 }
-else console.log(draw);
+//else console.log(draw);
+
+
+//Probability
+console.log(`${straightFlushCount}/${NUM_TRIALS} chance of getting a straight flush`);
+console.log(`${fourOfAKindCount}/${NUM_TRIALS} chance of getting a four of a kind`);
+console.log(`${fullHouseCount}/${NUM_TRIALS} chance of getting a full house`);
+console.log(`${flushCount}/${NUM_TRIALS} chance of getting a flush`);
+console.log(`${straightCount}/${NUM_TRIALS} chance of getting a straight`);
+console.log(`${threeOfAKindCount}/${NUM_TRIALS} chance of getting a three of a kind`);  
