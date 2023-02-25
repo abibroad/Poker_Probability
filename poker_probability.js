@@ -151,4 +151,4 @@ console.log(fourOfAKindCount/NUM_TRIALS + "% chance of getting a four of a kind"
 console.log(fullHouseCount/NUM_TRIALS + "% chance of getting a full house");
 console.log(flushCount/NUM_TRIALS + "% chance of getting a flush");
 console.log(straightCount/NUM_TRIALS +"% chance of getting a straight");
-console.log(threeOfAKindCount / NUM_TRIALS + "% chance of getting a three of a kind");  
+console.log(threeOfAKindCount/NUM_TRIALS + "% chance of getting a three of a kind");  
