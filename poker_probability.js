@@ -31,11 +31,9 @@ function drawFiveCards() {
 //running the functions num_trials number of times
 for (let i = 0; i < NUM_TRIALS; i++) {
 
-
     //drawing 5cards
     const hand = drawFiveCards();
     let draw = hand.join(' ');
-
 
     //get suitOrder
     function getSuitOrder() {
@@ -120,10 +118,7 @@ for (let i = 0; i < NUM_TRIALS; i++) {
         }
     }
 
-
-
     // main logic
-
     if (straightFlush(draw)) {
         straightFlushCount += 1;
     }
@@ -143,7 +138,6 @@ for (let i = 0; i < NUM_TRIALS; i++) {
         threeOfAKindCount += 1;
     }
 }
-
 
 //Probability
 console.log(straightFlushCount/NUM_TRIALS + "% chance of getting a straight flush");
