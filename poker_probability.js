@@ -1,14 +1,15 @@
-const NUM_TRIALS = 40;
+const NUM_TRIALS = 400;
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
 const numbers = ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 
 //empty arrays to be populated if logic is true
-let straightFlushCount = [0];
-let fourOfAKindCount = [0];
-let fullHouseCount = [0];
-let flushCount = [0];
-let straightCount = [0];
-let threeOfAKindCount = [0];
+let straightFlushCount = 0;
+let fourOfAKindCount = 0;
+let fullHouseCount = 0;
+let flushCount = 0;
+let straightCount = 0;
+let threeOfAKindCount = 0;
+
 
 //running the functions num_trials number of times
 for (let i = 0; i < NUM_TRIALS; i++) {
