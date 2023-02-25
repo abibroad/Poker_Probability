@@ -1,6 +1,6 @@
-const NUM_TRIALS = 0;
-const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-const numbers = ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7', '6', '5', '4', '3', '2']
+// const NUM_TRIALS = 0;
+ const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+ const numbers = ['Ace', 'King', 'Queen', 'Jack', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 function drawOneCard() {
     let oneSuit = Math.floor(Math.random() * suits.length);
     let oneNumber = Math.floor(Math.random() * numbers.length);
@@ -20,8 +20,11 @@ function drawFiveCards() {
     return cards
 }
 //drawing 5cards
-const hand = drawFiveCards()
-let draw = hand.join(' ')
+const hand = drawFiveCards();
+let draw = hand.join(' ');
+//const hand = ["8 Hearts", "9 Hearts", "10 Hearts", "Jack Hearts", "Queen Hearts", "King Hearts"]
+//let draw = "8 Hearts 9 Hearts 10 Hearts Jack Hearts Queen Hearts King Hearts"
+
 //get suitOrder
 function getSuitOrder() {
     let arrSuits = []
@@ -65,7 +68,7 @@ function flush(hand) {
     }
 }
 //straight flush
-function straightflush(hand) {
+function straightFlush(hand) {
     for (let item of suits) {
         if (hand.split(item).length - 1 === 5 && checkTest() === true) {
             return true
@@ -107,19 +110,22 @@ function pairNumbers() {
 // main logic
 //add straight flush, straight and flush
 //change console log to counts
-if (threeOfAKind(draw) && pairNumbers(draw)) {
-    console.log(draw + "  is a full house");
+if (straightFlush(draw)) {
+    console.log(draw + "  is a straight flush");
 }
 else if (fourOfAKind(draw)) {
     console.log(draw + "  is 4 of a kind");
+}    
+else if (threeOfAKind(draw) && pairNumbers(draw)) { //full house
+    console.log(draw + "  is a full house");
+}
+else if (flush(draw)) {
+    console.log(draw + "  is a flush")
+}
+else if (straight(draw)) {
+    console.log(draw + "  is a straight")
 }
 else if (threeOfAKind(draw)) {
     console.log(draw + "  is 3 of a kind");
-}else if (flush(draw)) {
-    console.log(draw + "  is a flush")
-}else if (straightflush(draw)) {
-    console.log(draw + "  is a straight flush")
-}else if (straight(draw)) {
-    console.log(draw + "  is a straight")
 }
-console.log(draw)
+else console.log(draw);
